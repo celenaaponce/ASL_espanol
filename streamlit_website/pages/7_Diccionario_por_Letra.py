@@ -37,7 +37,7 @@ def load_words():
         open("Search List2.csv", 'wb').write(r.content)
         del r
         txt.success("Finished")
-    word_data = pd.read_csv('Search List2.csv')
+    word_data = pd.read_csv('Search List2.csv', encoding='utf-8')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
