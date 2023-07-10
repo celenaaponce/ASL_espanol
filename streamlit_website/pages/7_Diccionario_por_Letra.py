@@ -154,6 +154,7 @@ elif st.session_state.prev_letter != st.session_state.letter:
 
     set_prev(st.session_state.letter)
     word_data = load_words()
+    st.write(word_data.head(5))
     letter = alpha_num[int(st.session_state.letter)]
     alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
     alpha_list.sort_values(by=['Palabra'])
