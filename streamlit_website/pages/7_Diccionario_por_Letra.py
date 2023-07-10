@@ -37,7 +37,7 @@ def load_words():
             try:
                 with st.spinner('Initiating...'):
                     time.sleep(3)
-                    url_csv = "https://www.dl.dropboxusercontent.com/s/...."
+                    url_csv = "https://www.dropbox.com/scl/fi/vivbirozqb3gt8pd1ayrr/Search-List-no-acc.csv?rlkey=uyuqnd256n5zysfavgpgqr0it&dl=0"
                     r_csv = requests.get(url_npy, allow_redirects=True)
 
                     open("streamlit_website/Search List2.cs", 'wb').write(r_csv.content)
