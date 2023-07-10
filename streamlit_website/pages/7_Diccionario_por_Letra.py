@@ -30,7 +30,7 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-@st.cache
+@st.cache_data
 def load_words():
 
     save_dest = Path('csv_list')
