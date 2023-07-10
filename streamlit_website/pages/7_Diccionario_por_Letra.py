@@ -29,15 +29,19 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+@st.cache
 def load_words():
-    if not 'Search List2.csv' in os.listdir('.'):
-        txt = st.warning("Downloading")
-        url = "https://www.dropbox.com/scl/fi/w8ryhdd4iidx7o6eq5wiv/Search-List2.csv?rlkey=4yi0dlrft2lizmbe64qofhgj5&dl=0"
-        r = requests.get(url, allow_redirects=True)
-        open("Search List2.csv", 'wb').write(r.content)
-        del r
-        txt.success("Finished")
-    word_data = pd.read_csv('Search List2.csv', encoding='utf-8')
+
+    save_dest = Path('csv_list')
+    save_dest.mkdir(exist_ok=True)
+    
+    f_checkpoint = Path("csv_list/SearchList.csv")
+
+    if not f_checkpoint.exists():
+        with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+            from GD_download import download_file_from_google_drive
+            download_file_from_google_drive('https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=drive_link', f_checkpoint)
+    word_data = pd.read_csv('SearchList.csv', encoding='utf-8')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
