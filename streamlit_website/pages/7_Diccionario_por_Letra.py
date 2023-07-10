@@ -28,6 +28,22 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
+  checkFiles = ("streamlit_website/Search List2.csv")
+  for path in checkFiles:
+        if os.path.exists(path) == False:
+            print('I miss :', path)
+            msg = st.warning("🚩 Models need to be downloaded... ")
+            try:
+                with st.spinner('Initiating...'):
+                    time.sleep(3)
+                    url_csv = "https://www.dl.dropboxusercontent.com/s/...."
+                    r_csv = requests.get(url_npy, allow_redirects=True)
+
+                    open("streamlit_website/Search List2.cs", 'wb').write(r_csv.content)
+                    del r_csv
+                    msg.success("Download was successful ✅")
+            except:
+                msg.error("Error downloading model files...😥")
     word_data = pd.read_csv('streamlit_website/Search List2.csv')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
