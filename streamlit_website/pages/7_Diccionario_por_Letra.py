@@ -136,64 +136,64 @@ elif clicked[6:] == '27':
     set_prev(st.session_state.letter)
     word_data = load_words()
     st.write(word_data.head(5))
-    alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    # alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[0:20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
 
 elif st.session_state.prev_letter != st.session_state.letter:
 
     set_prev(st.session_state.letter)
     word_data = load_words()
     st.write(word_data.head(5))
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    # letter = alpha_num[int(st.session_state.letter)]
+    # alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[0:20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
-    if st.session_state.offset < max_len:
-        col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
+    # col1, col2, col3 = st.columns([1,1,1])
+    # if st.session_state.offset < max_len:
+    #     col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
 
 elif st.session_state.prev_letter == st.session_state.letter:
     word_data = load_words()
     st.write(word_data.head(5))
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    # letter = alpha_num[int(st.session_state.letter)]
+    # alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
+    # col1, col2, col3 = st.columns([1,1,1])
     if st.session_state.offset+20 < max_len:
         col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
     if st.session_state.offset >= 20:
