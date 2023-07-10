@@ -29,13 +29,13 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
-  if not 'Search List2.csv' in os.listdir('.'):
-      txt = st.warning("Downloading")
-      url = "https://www.dropbox.com/scl/fi/w8ryhdd4iidx7o6eq5wiv/Search-List2.csv?rlkey=4yi0dlrft2lizmbe64qofhgj5&dl=0"
-      r = requests.get(url, allow_redirects=True)
-      open("Search List2.csv", 'wb').write(r.content)
-      del r
-      txt.success("Finished")
+    if not 'Search List2.csv' in os.listdir('.'):
+        txt = st.warning("Downloading")
+        url = "https://www.dropbox.com/scl/fi/w8ryhdd4iidx7o6eq5wiv/Search-List2.csv?rlkey=4yi0dlrft2lizmbe64qofhgj5&dl=0"
+        r = requests.get(url, allow_redirects=True)
+        open("Search List2.csv", 'wb').write(r.content)
+        del r
+        txt.success("Finished")
     word_data = pd.read_csv('Search List2.csv')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
