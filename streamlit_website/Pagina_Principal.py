@@ -2,13 +2,13 @@ import streamlit as st
 import streamlit.components.v1 as com
 import base64
 st.set_page_config(layout="wide")
-# hide_streamlit_style = """
-# <style>
-#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem; padding-right: 0}
-# </style>
+hide_streamlit_style = """
+<style>
+    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem; padding-right: 0}
+</style>
 
-# """
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 hide_menu_style = """
