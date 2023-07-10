@@ -18,7 +18,7 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with open("css/style.css") as f:
+with open("./style.css") as f:
     style = f.read()
 
 with open("css/bootstrap.css") as file:
