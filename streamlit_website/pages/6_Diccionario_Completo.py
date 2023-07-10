@@ -21,13 +21,13 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 def remote_css(url):
@@ -57,7 +57,7 @@ def img_to_html(img_path):
     )
     return img_html
 
-word_data = pd.read_csv('/Users/celenap/streamlit_website/Small Preview2.csv')
+word_data = pd.read_csv('streamlit_website/Small Preview2.csv')
 # groupby_column = 'word'
 # aggregate_column = 'theme'
 # agg_df = word_data.groupby(groupby_column).aggregate({aggregate_column: list})
