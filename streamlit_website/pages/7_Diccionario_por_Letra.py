@@ -44,7 +44,7 @@ def load_words():
     word_data = pd.read_csv('csv_list/SearchList.csv')
     word_data = word_data.drop(word_data.columns[0], axis=1)
     # word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
-    word_data.sort_values(by=['Palabra'])
+    # word_data.sort_values(by=['Palabra'])
     return word_data
 
 def img_to_bytes(img_path):
