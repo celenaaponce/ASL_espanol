@@ -29,6 +29,7 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
     word_data = pd.read_csv('streamlit_website/Search List2.csv')
+    st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     word_data.sort_values(by=['Palabra'])
