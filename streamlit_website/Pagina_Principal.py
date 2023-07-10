@@ -40,11 +40,11 @@ def open_image(file_path):
     file_.close()
     return data_url
 
-banner = open_image("/Users/celenap/streamlit_website/images/Online world-cuate (2).png")
-dictionary = open_image("/Users/celenap/streamlit_website/images/dictionary.png")
-classes = open_image("/Users/celenap/streamlit_website/images/Online learning-rafiki.png")
-books = open_image("/Users/celenap/streamlit_website/images/Absorbed in-pana.png")
-resource = open_image("/Users/celenap/streamlit_website/images/Selecting team-pana.png")
+banner = open_image("streamlit_website/images/Online world-cuate (2).png")
+dictionary = open_image("streamlit_website/images/dictionary.png")
+classes = open_image("streamlit_website/images/Online learning-rafiki.png")
+books = open_image("streamlit_website/images/Absorbed in-pana.png")
+resource = open_image("streamlit_website/images/Selecting team-pana.png")
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
