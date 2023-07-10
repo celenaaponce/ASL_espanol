@@ -35,8 +35,8 @@ def load_words():
 
 
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-        gdd.download_file_from_google_drive(file_id = '1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', dest_path = 'SearchList.csv')
-    word_data = pd.read_csv('SearchList.csv')
+        gdd.download_file_from_google_drive(file_id = '1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', dest_path = './SearchList.csv')
+    word_data = pd.read_csv('./SearchList.csv')
     word_data = word_data.drop(word_data.columns[0], axis=1)
     # word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     # word_data.sort_values(by=['Palabra'])
