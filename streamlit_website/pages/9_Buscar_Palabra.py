@@ -5,7 +5,7 @@ from autocorrect import Speller
 import sys
 from unidecode import unidecode
 
-sys.path.append('/Users/celenap/streamlit_website/check')
+sys.path.append('streamlit_website/check')
 
 from check.spanish_word_freq import SpanishWordFreq
 from check.word_chekcer import WordChecker
@@ -47,23 +47,23 @@ def load_words(file):
     word_data.sort_values(by=['Palabra'])
     return word_data
 
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 st.write("")
 st.header("Buscar Palabra")
 word = st.text_input("Buscar Palabra", label_visibility="hidden")
 
-word_data = load_words('/Users/celenap/streamlit_website/Search List2.csv')
+word_data = load_words('streamlit_website/Search List2.csv')
 
 word_list = word_data.loc[word_data['Palabra']==word]
-word_data_no_acc = load_words('/Users/celenap/streamlit_website/Search List no acc.csv')
+word_data_no_acc = load_words('streamlit_website/Search List no acc.csv')
 word_list_no_acc = word_data_no_acc.index[word_data_no_acc['Palabra']==word]
 
 if not word_list.empty:
@@ -95,7 +95,7 @@ elif not word_list_no_acc.empty:
         unsafe_allow_html=True)
     
 if word_list.empty and word != "":
-    filePath = "/Users/celenap/streamlit_website/pages/10000_frecuencias.txt"
+    filePath = "streamlit_website/pages/10000_frecuencias.txt"
 
     spanishWords = SpanishWordFreq(filePath)
     
