@@ -28,7 +28,7 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
-    word_data = pd.read_csv('/Users/celenap/streamlit_website/Search List2.csv')
+    word_data = pd.read_csv('streamlit_website/Search List2.csv')
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     word_data.sort_values(by=['Palabra'])
@@ -44,13 +44,13 @@ def img_to_html(img_path):
       img_to_bytes(img_path)
     )
     return img_html
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 if 'letter' not in st.session_state:
@@ -77,7 +77,7 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
-other = img_to_html('/Users/celenap/streamlit_website/images/otra.png')
+other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
       content= f"""
          <br>
