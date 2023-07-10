@@ -4,6 +4,7 @@ import pandas as pd
 from pathlib import Path 
 import os
 import requests
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 from st_click_detector import click_detector
 alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k',
@@ -39,8 +40,7 @@ def load_words():
 
     if not f_checkpoint.exists():
         with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-            from GD_download import download_file_from_google_drive
-            download_file_from_google_drive('https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=drive_link', f_checkpoint)
+            gdd.download_file_from_google_drive('https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=drive_link', f_checkpoint)
     word_data = pd.read_csv('SearchList.csv', encoding='utf-8')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
