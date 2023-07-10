@@ -33,15 +33,10 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 @st.cache_data
 def load_words():
 
-    save_dest = Path('csv_list')
-    save_dest.mkdir(exist_ok=True)
-    
-    f_checkpoint = Path("csv_list/SearchList.csv")
 
-    if not f_checkpoint.exists():
-        with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-            gdd.download_file_from_google_drive('https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=sharing', f_checkpoint)
-    word_data = pd.read_csv('csv_list/SearchList.csv')
+    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+        gdd.download_file_from_google_drive(file_id = '1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', dest_path = 'SearchList.csv')
+    word_data = pd.read_csv('SearchList.csv')
     word_data = word_data.drop(word_data.columns[0], axis=1)
     # word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     # word_data.sort_values(by=['Palabra'])
