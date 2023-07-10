@@ -29,23 +29,14 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
-    checkFiles = ("streamlit_website/Search List2.csv")
-    for path in checkFiles:
-        if os.path.exists(path) == False:
-            print('I miss :', path)
-            msg = st.warning("🚩 Models need to be downloaded... ")
-            try:
-                with st.spinner('Initiating...'):
-                    time.sleep(3)
-                    url_csv = "https://www.dropbox.com/scl/fi/vivbirozqb3gt8pd1ayrr/Search-List-no-acc.csv?rlkey=uyuqnd256n5zysfavgpgqr0it&dl=0"
-                    r_csv = requests.get(url_npy, allow_redirects=True)
-
-                    open("streamlit_website/Search List2.cs", 'wb').write(r_csv.content)
-                    del r_csv
-                    msg.success("Download was successful ✅")
-            except:
-                msg.error("Error downloading model files...😥")
-    word_data = pd.read_csv('streamlit_website/Search List2.csv')
+  if not 'Search List2.csv' in os.listdir('.'):
+      txt = st.warning("Downloading")
+      url = "https://www.dropbox.com/scl/fi/w8ryhdd4iidx7o6eq5wiv/Search-List2.csv?rlkey=4yi0dlrft2lizmbe64qofhgj5&dl=0"
+      r = requests.get(url, allow_redirects=True)
+      open("Search List2.csv", 'wb').write(r.content)
+      del r
+      txt.success("Finished")
+    word_data = pd.read_csv('Search List2.csv')
     st.write(word_data.head(5))
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
