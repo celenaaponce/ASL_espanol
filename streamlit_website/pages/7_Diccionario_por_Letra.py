@@ -28,8 +28,8 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def load_words():
-  checkFiles = ("streamlit_website/Search List2.csv")
-  for path in checkFiles:
+    checkFiles = ("streamlit_website/Search List2.csv")
+    for path in checkFiles:
         if os.path.exists(path) == False:
             print('I miss :', path)
             msg = st.warning("🚩 Models need to be downloaded... ")
