@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path 
 import os
 import requests
-from google_drive_downloader import GoogleDriveDownloader as gdd
+import gdown
 
 from st_click_detector import click_detector
 alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k',
@@ -34,9 +34,10 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 def load_words():
 
 
-    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-        gdd.download_file_from_google_drive(file_id = '1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', dest_path = './SearchList.csv', overwrite= True, showsize=True, unzip=True)
-    word_data = pd.read_csv('./SearchList.csv')
+    url = 'https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=sharing'
+    path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+
+    word_data = pd.read_csv(path)
     word_data = word_data.drop(word_data.columns[0], axis=1)
     # word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     # word_data.sort_values(by=['Palabra'])
