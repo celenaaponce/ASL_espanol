@@ -18,13 +18,13 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 def remote_css(url):
@@ -40,11 +40,11 @@ def open_image(file_path):
     file_.close()
     return data_url
 
-banner = open_image("/Users/celenap/streamlit_website/images/Online world-cuate (2).png")
-dictionary = open_image("/Users/celenap/streamlit_website/images/dictionary.png")
-classes = open_image("/Users/celenap/streamlit_website/images/Online learning-rafiki.png")
-books = open_image("/Users/celenap/streamlit_website/images/Absorbed in-pana.png")
-resource = open_image("/Users/celenap/streamlit_website/images/Selecting team-pana.png")
+banner = open_image("streamlit_website/images/Online world-cuate (2).png")
+dictionary = open_image("streamlit_website/images/dictionary.png")
+classes = open_image("streamlit_website/images/Online learning-rafiki.png")
+books = open_image("streamlit_website/images/Absorbed in-pana.png")
+resource = open_image("streamlit_website/images/Selecting team-pana.png")
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:

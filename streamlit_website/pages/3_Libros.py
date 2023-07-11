@@ -18,13 +18,13 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 def open_image(file_path):
@@ -36,11 +36,11 @@ def open_image(file_path):
 
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)   
-banner = open_image("/Users/celenap/streamlit_website/images/Absorbed in-pana.png")
-bailar = open_image("/Users/celenap/streamlit_website/images/books/jirafas no pueden bailar.jpg")
-araña = open_image("/Users/celenap/streamlit_website/images/books/la arana muy ocupada.jpg")
-conejo = open_image("/Users/celenap/streamlit_website/images/books/el libro de colores de coneja blanca.jpeg")
-dinos = open_image("/Users/celenap/streamlit_website/images/books/como dan las buenas noches los dinosaurios.jpg")
+banner = open_image("streamlit_website/images/Absorbed in-pana.png")
+bailar = open_image("streamlit_website/images/books/jirafas no pueden bailar.jpg")
+araña = open_image("streamlit_website/images/books/la arana muy ocupada.jpg")
+conejo = open_image("streamlit_website/images/books/el libro de colores de coneja blanca.jpeg")
+dinos = open_image("streamlit_website/images/books/como dan las buenas noches los dinosaurios.jpg")
 remote_css("https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap")
 remote_css("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
 com.html(f"""

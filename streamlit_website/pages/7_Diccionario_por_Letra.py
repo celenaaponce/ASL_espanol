@@ -2,6 +2,8 @@ import streamlit as st
 import base64
 import pandas as pd
 from pathlib import Path 
+import os
+import requests
 
 from st_click_detector import click_detector
 alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k',
@@ -27,11 +29,17 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+@st.cache_data
 def load_words():
-    word_data = pd.read_csv('/Users/celenap/streamlit_website/Search List2.csv')
+
+
+    url = 'https://drive.google.com/file/d/1bii0vusXl-640sgVhRK2NVj8XCZtGgDx/view?usp=sharing'
+    path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+
+    word_data = pd.read_csv(path)
     word_data = word_data.drop(word_data.columns[0], axis=1)
-    word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
-    word_data.sort_values(by=['Palabra'])
+    # word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
+    # word_data.sort_values(by=['Palabra'])
     return word_data
 
 def img_to_bytes(img_path):
@@ -44,13 +52,13 @@ def img_to_html(img_path):
       img_to_bytes(img_path)
     )
     return img_html
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 if 'letter' not in st.session_state:
@@ -77,7 +85,7 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
-other = img_to_html('/Users/celenap/streamlit_website/images/otra.png')
+other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
       content= f"""
          <br>
@@ -122,62 +130,65 @@ if clicked == "":
 elif clicked[6:] == '27':
     set_prev(st.session_state.letter)
     word_data = load_words()
-    alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    st.write(word_data.head(5))
+    # alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[0:20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
 
 elif st.session_state.prev_letter != st.session_state.letter:
 
     set_prev(st.session_state.letter)
     word_data = load_words()
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    st.write(word_data.head(5))
+    # letter = alpha_num[int(st.session_state.letter)]
+    # alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[0:20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
-    if st.session_state.offset < max_len:
-        col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
+    # col1, col2, col3 = st.columns([1,1,1])
+    # if st.session_state.offset < max_len:
+    #     col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
 
 elif st.session_state.prev_letter == st.session_state.letter:
     word_data = load_words()
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
-    next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    st.write(word_data.head(5))
+    # letter = alpha_num[int(st.session_state.letter)]
+    # alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
+    # alpha_list.sort_values(by=['Palabra'])
+    # max_len = len(alpha_list)
+    # next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
+    # table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    # html_string = f'''
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
+    #     <body>
+    #         {table}
+    #     </body>
+    #     '''
+    # st.markdown(
+    #         html_string,
+    #     unsafe_allow_html=True)
+    # col1, col2, col3 = st.columns([1,1,1])
     if st.session_state.offset+20 < max_len:
         col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
     if st.session_state.offset >= 20:

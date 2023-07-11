@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
-from spellchecker import SpellChecker
-from autocorrect import Speller
 import sys
-from unidecode import unidecode
 
 sys.path.append('/Users/celenap/streamlit_website/check')
 

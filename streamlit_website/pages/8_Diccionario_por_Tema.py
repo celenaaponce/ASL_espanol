@@ -19,19 +19,19 @@ if "clicked" not in st.session_state:
 themes = {1: 'Plano de Casa', 2: 'Día de los Muertos', 4: 'Dia de San Valentin', 3: 'Halloween', 5: 'Primavera', 6: 'Quehaceres', 7: 'Exterior de Casa', 8: 'Más Comida', 9: 'Día de Acción de Gracias', 
           10: 'Frutas', 11: 'Verduras', 12: 'Carnes', 13: 'Interior de Casa', 14: 'Bravo 1', 15: 'Bravo 2', 16: 'Bravo 3', 17: 'Bravo 4', 18: 'Números', 19: "Pascua", 20: "Colores"}
 def load_words():
-    word_data = pd.read_csv('/Users/celenap/streamlit_website/Themes2.csv')
+    word_data = pd.read_csv('streamlit_website/Themes2.csv')
     word_data = word_data.drop(word_data.columns[0], axis=1)
     word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
     word_data.sort_values(by=['Tema'])
     return word_data
 
-with open("css/style.css") as f:
+with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("css/bootstrap.css") as file:
+with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("css/responsive.css") as file2:
+with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
 
 if st.session_state.clicked == "":
