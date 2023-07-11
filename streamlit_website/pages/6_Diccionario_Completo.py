@@ -66,7 +66,7 @@ df = load_data(st.secrets["public_gsheets_url"])
 
 # Print results.
 for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
+    st.write(f"{row}")
 # word_data = pd.read_csv('/Users/celenap/streamlit_website/Small Preview2.csv')
 # groupby_column = 'word'
 # aggregate_column = 'theme'
