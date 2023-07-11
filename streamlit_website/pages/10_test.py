@@ -16,3 +16,5 @@ for row in df.itertuples():
 
 reader = pd.read_csv('streamlit_website/Search List2.csv', iterator=True)
 reader.get_chunk(100)
+for index, row in reader.iterrows():
+    st.write(row)
