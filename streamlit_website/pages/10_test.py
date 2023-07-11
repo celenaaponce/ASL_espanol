@@ -14,9 +14,8 @@ df = load_data(st.secrets["public_gsheets_url"])
 for row in df.itertuples():
     st.write(f"{row.name} has a :{row.pet}:")
 
-chunksize = 5
-TextFileReader = pd.read_csv('streamlit_website/Search List2.csv', chunksize=chunksize)
+test = pd.read_csv('https://www.dropbox.com/scl/fi/2wst0hwnbjdddp77305v5/Themes2.csv?rlkey=tenp52e12q272n7k8yy8w0bi8&dl=0')
 
-full_data = pd.concat(TextFileReader, ignore_index=True)
+st.write(test.head(5))
 
-st.write(full_data.head(5))
+
