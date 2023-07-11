@@ -15,6 +15,6 @@ for row in df.itertuples():
     st.write(f"{row.name} has a :{row.pet}:")
 
 reader = pd.read_csv('streamlit_website/Search List2.csv', iterator=True)
-reader.get_chunk(100)
-for index, row in reader.iterrows():
-    st.write(row)
+reader.get_chunk(15)
+for chunk in reader:
+    print(chunk)
