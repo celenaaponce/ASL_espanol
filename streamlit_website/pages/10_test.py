@@ -17,4 +17,4 @@ for row in df.itertuples():
 reader = pd.read_csv('streamlit_website/Search List2.csv', iterator=True)
 reader.get_chunk(15)
 for chunk in reader:
-    print(chunk)
+    st.write(chunk)
