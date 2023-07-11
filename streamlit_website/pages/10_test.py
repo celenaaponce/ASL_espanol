@@ -16,6 +16,8 @@ for row in df.itertuples():
 
 test = pd.read_csv('https://www.dropbox.com/scl/fi/2wst0hwnbjdddp77305v5/Themes2.csv?rlkey=tenp52e12q272n7k8yy8w0bi8&dl=0', chunksize = 5)
 
-st.write(test.head(5))
+full_data = pd.concat(TextFileReader, ignore_index=True)
+
+st.write(full_data.head(5))
 
 
