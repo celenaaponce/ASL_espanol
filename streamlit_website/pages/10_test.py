@@ -18,6 +18,6 @@ test = pd.read_csv('https://www.dropbox.com/scl/fi/2wst0hwnbjdddp77305v5/Themes2
 
 full_data = pd.concat(test, ignore_index=True)
 
-st.write(full_data.head(15))
+st.write(full_data.head(30))
 
 
