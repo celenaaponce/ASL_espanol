@@ -19,4 +19,4 @@ TextFileReader = pd.read_csv('streamlit_website/Search List2.csv', chunksize=chu
 
 full_data = pd.concat(TextFileReader, ignore_index=True)
 
-st.write(full_data.head(5))
+st.write(full_data.columns())
