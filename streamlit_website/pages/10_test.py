@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import io
 import dropbox
-DBX = dropbox.Dropbox(token)
+DBX = dropbox.Dropbox(st.secrets["token"])
 _, res = DBX.files_download("/Themes2.csv")
 
 with io.BytesIO(res.content) as stream:
