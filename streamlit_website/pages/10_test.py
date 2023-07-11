@@ -47,3 +47,6 @@ def download_file_from_google_drive(id, destination):
 
 download_file_from_google_drive('1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG', 'sheet.csv')
 
+test = pd.read_csv('sheet.csv')
+st.write(test.head(5))
+
