@@ -32,8 +32,8 @@ def save_response_content(response, destination):
                 f.write(chunk)
 
 def download_file_from_google_drive(id, destination):
-    
-    URL = "https://drive.google.com/file/d/1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG/view?usp=drive_link"
+    URL = "https://sheets.google.com/uc?export=download"
+    # URL = "https://drive.google.com/file/d/1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG/view?usp=drive_link"
 
     session = requests.Session()
 
@@ -44,4 +44,6 @@ def download_file_from_google_drive(id, destination):
         response = session.get(URL, params = params, stream = True)
 
     save_response_content(response, destination) 
+
+download_file_from_google_drive(1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG, 'sheet.csv')
 
