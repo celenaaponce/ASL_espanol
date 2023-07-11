@@ -1,6 +1,14 @@
 import pandas as pd
 import streamlit as st
+import io
+import dropbox
+DBX = dropbox.Dropbox(token)
+_, res = DBX.files_download("/Themes2.csv")
 
+with io.BytesIO(res.content) as stream:
+    df = pd.read_csv(stream, index_col=0)
+
+st.write(df.head(5))
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 @st.cache_data(ttl=600)
@@ -10,14 +18,6 @@ def load_data(sheets_url):
 
 df = load_data(st.secrets["public_gsheets_url"])
 
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
 
-test = pd.read_csv('https://www.dropbox.com/scl/fi/2wst0hwnbjdddp77305v5/Themes2.csv?rlkey=tenp52e12q272n7k8yy8w0bi8&dl=0', chunksize = 5, on_bad_lines='skip')
-
-full_data = pd.concat(test, ignore_index=True)
-
-st.write(full_data.head(30))
 
 
