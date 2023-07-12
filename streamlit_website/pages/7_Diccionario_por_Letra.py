@@ -128,8 +128,8 @@ with placeholder.container():
   clicked = images(10)
   set_start(clicked[6:])
   word_data = load_words()
-  if clicked == "":
-     pass
+if clicked == "":
+    pass
 
 elif clicked[6:] == '27':
     placeholder.empty()
