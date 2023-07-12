@@ -56,8 +56,21 @@ def img_to_html(img_path):
       img_to_bytes(img_path)
     )
     return img_html
+    
+def download_csv(file_id, output_file):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, output_file, quiet=False)
 
-word_data = pd.read_csv('/Users/celenap/streamlit_website/Small Preview2.csv')
+download_csv('1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG', 'Small Preview2.csv')
+st.success("File downloaded successfully!")
+
+
+csv_length = 0    
+for chunk in pd.read_csv('Small Preview2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
+        data = pd.DataFrame(chunk)
+        csv_length += chunk.count()
+
+word_data = data
 # groupby_column = 'word'
 # aggregate_column = 'theme'
 # agg_df = word_data.groupby(groupby_column).aggregate({aggregate_column: list})
