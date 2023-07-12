@@ -22,7 +22,7 @@ def main():
         try:
             
             csv_length = 0    
-            for chunk in pd.read_csv('Small Preview2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000):
+            for chunk in pd.read_csv('Small Preview2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
                 data = pd.DataFrame(chunk)
                 csv_length += chunk.count()
             st.write(data.head(5))
