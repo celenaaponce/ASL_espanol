@@ -1,52 +1,29 @@
-import pandas as pd
 import streamlit as st
-import io
-import dropbox
+import pandas as pd
+import gdown
 
-# Read in data from the Google Sheet.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def load_data(sheets_url):
-    csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
-    return pd.read_csv(csv_url)
+def download_csv(file_id, output_file):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, output_file, quiet=False)
+def main():
+    st.title("CSV File Reader")
 
-df = load_data(st.secrets["public_gsheets_url"])
+    # Input file ID and output file name
+    file_id = st.text_input("Enter the file ID:")
+    output_file = "output.csv"
 
+    # Download the file
+    if st.button("Download"):
+        download_csv('1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG', 'Small Preview2.csv')
+        st.success("File downloaded successfully!")
 
-import requests
+    # Read the CSV file
+    if st.button("Read CSV"):
+        try:
+            df = pd.read_csv(output_file)
+            st.dataframe(df)
+        except FileNotFoundError:
+            st.error("Please download the file first.")
 
-
-def get_confirm_token(response):
-    for key, value in response.cookies.items():
-        if key.startswith('download_warning'):
-            return value
-
-    return None
-
-def save_response_content(response, destination):
-    CHUNK_SIZE = 32768
-
-    with open(destination, "wb") as f:
-        for chunk in response.iter_content(CHUNK_SIZE):
-            if chunk: # filter out keep-alive new chunks
-                f.write(chunk)
-
-def download_file_from_google_drive(id, destination):
-    URL = "https://sheets.google.com/uc?export=download"
-    # URL = "https://drive.google.com/file/d/1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG/view?usp=drive_link"
-
-    session = requests.Session()
-
-    response = session.get(URL, params = { 'id' : id }, stream = True)
-    token = get_confirm_token(response)
-    if token:
-        params = { 'id' : id, 'confirm' : token }
-        response = session.get(URL, params = params, stream = True)
-
-    save_response_content(response, destination) 
-
-download_file_from_google_drive('1ynYsJEwmJEiCqfDEbTzvBDvHWHKNZeLG', 'sheet.csv')
-
-test = pd.read_csv('sheet.csv')
-st.write(test.head(5))
-
+if __name__ == "__main__":
+    main()
