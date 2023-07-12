@@ -44,7 +44,7 @@ def load_words():
   for chunk in pd.read_csv('Search List2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
           data = pd.DataFrame(chunk)
           csv_length += chunk.count()
-  return word_data
+  return data
 
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
