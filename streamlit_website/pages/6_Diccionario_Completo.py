@@ -96,7 +96,7 @@ word_data = data
 #     word_data.at[index, 'Imagen'] = img_to_html('images/dict/{}'.format(row['Imagen']))
 #   else:
 #     word_data.at[index, 'Imagen'] =  "<ul>""</ul>"
-word_data = word_data.drop(word_data.columns[0], axis=1)
+
 word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
 word_data.sort_values(by=['Palabra'])
 first_50 = word_data.head(offset)
