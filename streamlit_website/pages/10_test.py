@@ -21,7 +21,7 @@ def main():
     if st.button("Read CSV"):
         try:
             csv_length = 0    
-            for chunk in pd.read_csv(fileinput, names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], skiprows=skip, chunksize=10000):
+            for chunk in pd.read_csv('Small Preview2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], skiprows=skip, chunksize=10000):
                 csv_length += chunk.count()
             st.write(csv_length )
         except FileNotFoundError:
