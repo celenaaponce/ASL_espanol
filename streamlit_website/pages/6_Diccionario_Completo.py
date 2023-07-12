@@ -3,6 +3,7 @@ import streamlit.components.v1 as com
 import base64
 import pandas as pd
 from pathlib import Path 
+import gdown
 
 offset = 50
 st.set_page_config(layout="wide", page_title="Diccionario Completo")
