@@ -14,7 +14,7 @@ alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 
 alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
-
+placeholder = st.empty()
 hide_streamlit_style = """
 <style>
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
@@ -124,14 +124,15 @@ def images(size):
          """
       clicked = click_detector(content)
       return clicked
-
-clicked = images(10)
-set_start(clicked[6:])
-word_data = load_words()
-if clicked == "":
-   pass
+with placeholder.container():
+  clicked = images(10)
+  set_start(clicked[6:])
+  word_data = load_words()
+  if clicked == "":
+     pass
 
 elif clicked[6:] == '27':
+    placeholder.empty()
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
     alpha_list.sort_values(by=['Palabra'])
@@ -149,7 +150,7 @@ elif clicked[6:] == '27':
         unsafe_allow_html=True)
 
 elif st.session_state.prev_letter != st.session_state.letter:
-
+    placeholder.empty()
     set_prev(st.session_state.letter)
     letter = alpha_num[int(st.session_state.letter)]
     alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
@@ -171,6 +172,7 @@ elif st.session_state.prev_letter != st.session_state.letter:
         col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
 
 elif st.session_state.prev_letter == st.session_state.letter:
+    placeholder.empty()
     letter = alpha_num[int(st.session_state.letter)]
     alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
     alpha_list.sort_values(by=['Palabra'])
