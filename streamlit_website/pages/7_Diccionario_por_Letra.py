@@ -121,7 +121,7 @@ def images(size):
          <a href='#' id='Image 27'>{other}</a>
          """
       clicked = click_detector(content)
-      st.write('adding images")
+      st.write('adding images')
       return clicked
 def print_list(next_list):
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
