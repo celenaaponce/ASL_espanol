@@ -135,6 +135,7 @@ def images(size):
       return clicked
   
 def print_list(next_list):
+  with placeholder.container()
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
     html_string = f'''
 
@@ -149,14 +150,11 @@ def print_list(next_list):
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
 
-st.write(st.session_state.set_images)
+
 #set up main page with images  
-with placeholder.container():
-  if st.session_state.set_images == False:
-    clicked = images(10)
-    st.session_state.set_images = True
-    set_start(clicked[6:])
-    word_data = load_words()
+clicked = images(10)
+set_start(clicked[6:])
+word_data = load_words()
 
 
 #clicking logic
@@ -166,8 +164,9 @@ if clicked[6:] == '27':
     alpha_list.sort_values(by=['Palabra'])
     max_len = len(alpha_list)
     next_list = alpha_list[0:20]
+    placeholder.empty()
     print_list(next_list)
-    st.session_state.set_images = False
+
   
 if clicked != "":
   letter = alpha_num[int(st.session_state.letter)]
@@ -183,9 +182,8 @@ if clicked != "":
   if st.session_state.prev_letter == st.session_state.letter:
     next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
     offset = st.session_state.offset+20
-    
+  placeholder.empty() 
   print_list(next_list)
-  st.session_state.set_images = False
   col1, col2, col3 = st.columns([1,1,1])
   if offset < max_len:
       col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
