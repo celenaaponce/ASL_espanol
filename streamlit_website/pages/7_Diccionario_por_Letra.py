@@ -37,13 +37,16 @@ def download_csv(file_id, output_file):
 
 download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
 st.success("File downloaded successfully!")
-
+if 'download' not in st.session_state:
+   st.session_state.download = False
+  
 @st.cache_data
 def load_words():
   csv_length = 0    
   for chunk in pd.read_csv('Search List2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
           data = pd.DataFrame(chunk)
           csv_length += chunk.count()
+  st.session_state.download=True
   return data
 
 def img_to_bytes(img_path):
@@ -127,7 +130,8 @@ def images(size):
 with placeholder.container():
   clicked = images(10)
   set_start(clicked[6:])
-  word_data = load_words()
+  if st.session_state.download == False:
+    word_data = load_words()
 if clicked == "":
     pass
 
