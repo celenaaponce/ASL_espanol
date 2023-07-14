@@ -18,7 +18,7 @@ alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 
 ##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
-placeholder = st.empty()
+
 hide_streamlit_style = """
 <style>
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
@@ -156,7 +156,6 @@ if st.session_state.first_through == False:
   word_data = load_words()
   
 if st.session_state.first_through == True:
-  with placeholder.container():
     #set up main page with images  
     clicked = images(10)
     set_start(clicked[6:])
@@ -168,7 +167,6 @@ if st.session_state.first_through == True:
 
 #clicking logic
 if clicked[6:] == '27': 
-    placeholder.empty()
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
     alpha_list.sort_values(by=['Palabra'])
@@ -179,7 +177,6 @@ if clicked[6:] == '27':
 
   
 if clicked != "":
-  placeholder.empty()
   letter = alpha_num[int(st.session_state.letter)]
   alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
   alpha_list.sort_values(by=['Palabra'])
