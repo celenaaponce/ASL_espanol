@@ -151,7 +151,6 @@ if st.session_state.download == False:
 
 st.write(st.session_state.set_images)
 #set up main page with images  
-placeholder.empty()
 with placeholder.container():
   if st.session_state.set_images == False:
     clicked = images(10)
@@ -168,6 +167,7 @@ if clicked[6:] == '27':
     max_len = len(alpha_list)
     next_list = alpha_list[0:20]
     print_list(next_list)
+    st.session_state.set_images = False
   
 if clicked != "":
   letter = alpha_num[int(st.session_state.letter)]
@@ -185,6 +185,7 @@ if clicked != "":
     offset = st.session_state.offset+20
     
   print_list(next_list)
+  st.session_state.set_images = False
   col1, col2, col3 = st.columns([1,1,1])
   if offset < max_len:
       col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
