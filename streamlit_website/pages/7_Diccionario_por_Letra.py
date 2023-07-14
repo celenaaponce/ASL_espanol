@@ -148,7 +148,8 @@ def print_list(next_list):
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
-  
+
+st.write(st.session_state.set_images)
 #set up main page with images  
 placeholder.empty()
 with placeholder.container():
@@ -157,6 +158,7 @@ with placeholder.container():
     st.session_state.set_images = True
     set_start(clicked[6:])
     word_data = load_words()
+
 
 #clicking logic
 if clicked[6:] == '27': 
