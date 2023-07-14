@@ -18,7 +18,7 @@ alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 
 ##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
-placeholder = st.empty()
+
 hide_streamlit_style = """
 <style>
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
@@ -135,7 +135,7 @@ def images(size):
       return clicked
   
 def print_list(next_list):
-  with placeholder.container():
+
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
     html_string = f'''
 
