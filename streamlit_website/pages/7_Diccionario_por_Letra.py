@@ -18,7 +18,7 @@ alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 
 ##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
-
+placeholder = st.container()
 hide_streamlit_style = """
 <style>
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
@@ -56,8 +56,8 @@ if 'offset' not in st.session_state:
 if 'prev_letter' not in st.session_state:
    st.session_state.prev_letter = -1
 
-if 'set_images' not in st.session_state:
-  st.session_state.set_images = False
+if 'first_through' not in st.session_state:
+  st.session_state.first_through = True
   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -149,12 +149,22 @@ def print_list(next_list):
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
+if st.session_state.first_through == False:
+  placeholder.empty()
+  #set up main page with images  
+  clicked = images(10)
+  set_start(clicked[6:])
+  word_data = load_words()
+  
+if st.session_state.first_through == True:
+  with placeholder.container():
+    #set up main page with images  
+    clicked = images(10)
+    set_start(clicked[6:])
+    word_data = load_words()
+    st.session_state.first_through = False
 
 
-#set up main page with images  
-clicked = images(10)
-set_start(clicked[6:])
-word_data = load_words()
 
 
 #clicking logic
