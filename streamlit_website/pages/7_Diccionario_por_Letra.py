@@ -36,15 +36,12 @@ def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(url, output_file, quiet=False)
     st.session_state.download = True
-if st.session_state.download == False:
-  download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
   
 @st.cache_data
 def load_words():
   csv_length = 0    
   for chunk in pd.read_csv('Search List2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
           data = pd.DataFrame(chunk)
-          csv_length += chunk.count()
   return data
 
 def img_to_bytes(img_path):
@@ -128,76 +125,54 @@ def images(size):
       st.write(st.session_state.prev_letter)
       clicked = click_detector(content)
       return clicked
+def print_list(next_list):
+    table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    html_string = f'''
+
+        <body>
+            {table}
+        </body>
+        '''
+    st.markdown(
+            html_string,
+        unsafe_allow_html=True)
+  
+if st.session_state.download == False:
+  download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
   
 with placeholder.container():
   clicked = images(10)
   set_start(clicked[6:])
   word_data = load_words()
   
-if clicked == "":
-    pass
-
-elif clicked[6:] == '27':
-
+if clicked[6:] == '27': 
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
     alpha_list.sort_values(by=['Palabra'])
     max_len = len(alpha_list)
     next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    print_list(next_list)
+  
+if clicked != ":
+  letter = alpha_num[int(st.session_state.letter)]
+  alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
+  alpha_list.sort_values(by=['Palabra'])
+  max_len = len(alpha_list)
+  col1, col2, col3 = st.columns([1,1,1])
 
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-
-elif st.session_state.prev_letter != st.session_state.letter:
+  if st.session_state.prev_letter != st.session_state.letter:
     set_prev(st.session_state.letter)
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
     next_list = alpha_list[0:20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    offset = st.session_state.offset
 
-        <body>
-            {table}
-        </body>
-        '''
-
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
-    if st.session_state.offset < max_len:
-        col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
-
-elif st.session_state.prev_letter == st.session_state.letter:
-
-    letter = alpha_num[int(st.session_state.letter)]
-    alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
-    alpha_list.sort_values(by=['Palabra'])
-    max_len = len(alpha_list)
+  if st.session_state.prev_letter == st.session_state.letter:
     next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
+    offset = st.session_state.offset+20
+    
+  print_list(next_list)
 
-        <body>
-            {table}
-        </body>
-        '''
-
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,1,1])
-    if st.session_state.offset+20 < max_len:
-        col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
-    if st.session_state.offset >= 20:
-        col1.button('Palabras Anteriores', on_click = back_offset, args=[st.session_state.offset])
+  if offset < max_len:
+      col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
+  if st.session_state.offset >= 20:
+      col1.button('Palabras Anteriores', on_click = back_offset, args=[st.session_state.offset])
 
