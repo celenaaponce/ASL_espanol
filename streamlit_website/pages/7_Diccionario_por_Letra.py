@@ -29,16 +29,15 @@ hide_menu_style = """
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-
+if 'download' not in st.session_state:
+   st.session_state.download = False
 
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(url, output_file, quiet=False)
-
-download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
-st.success("File downloaded successfully!")
-if 'download' not in st.session_state:
-   st.session_state.download = False
+    st.session_state.download = True
+if st.session_state.download == False:
+  download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
   
 @st.cache_data
 def load_words():
@@ -46,7 +45,6 @@ def load_words():
   for chunk in pd.read_csv('Search List2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
           data = pd.DataFrame(chunk)
           csv_length += chunk.count()
-  st.session_state.download=True
   return data
 
 def img_to_bytes(img_path):
@@ -127,16 +125,18 @@ def images(size):
          """
       clicked = click_detector(content)
       return clicked
+  
 with placeholder.container():
   clicked = images(10)
   set_start(clicked[6:])
-  if st.session_state.download == False:
-    word_data = load_words()
+  word_data = load_words()
+  
 if clicked == "":
     pass
 
 elif clicked[6:] == '27':
     placeholder.empty()
+
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
     alpha_list.sort_values(by=['Palabra'])
@@ -149,6 +149,9 @@ elif clicked[6:] == '27':
             {table}
         </body>
         '''
+    with placeholder.container():
+      clicked = images(10)
+      set_start(clicked[6:])
     st.markdown(
             html_string,
         unsafe_allow_html=True)
@@ -168,6 +171,9 @@ elif st.session_state.prev_letter != st.session_state.letter:
             {table}
         </body>
         '''
+    with placeholder.container():
+      clicked = images(10)
+      set_start(clicked[6:])
     st.markdown(
             html_string,
         unsafe_allow_html=True)
@@ -189,6 +195,9 @@ elif st.session_state.prev_letter == st.session_state.letter:
             {table}
         </body>
         '''
+    with placeholder.container():
+      clicked = images(10)
+      set_start(clicked[6:])
     st.markdown(
             html_string,
         unsafe_allow_html=True)
