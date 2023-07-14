@@ -120,9 +120,6 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-      st.write('images added')
-      st.write(st.session_state.letter)
-      st.write(st.session_state.prev_letter)
       clicked = click_detector(content)
       return clicked
 def print_list(next_list):
@@ -158,7 +155,6 @@ if clicked != "":
   alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
   alpha_list.sort_values(by=['Palabra'])
   max_len = len(alpha_list)
-  col1, col2, col3 = st.columns([1,1,1])
 
   if st.session_state.prev_letter != st.session_state.letter:
     set_prev(st.session_state.letter)
@@ -170,7 +166,7 @@ if clicked != "":
     offset = st.session_state.offset+20
     
   print_list(next_list)
-
+  col1, col2, col3 = st.columns([1,1,1])
   if offset < max_len:
       col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
   if st.session_state.offset >= 20:
