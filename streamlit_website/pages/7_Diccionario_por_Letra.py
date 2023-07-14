@@ -58,6 +58,8 @@ if 'prev_letter' not in st.session_state:
 
 if 'first_through' not in st.session_state:
   st.session_state.first_through = True
+  clicked = images(10)
+
   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -149,21 +151,11 @@ def print_list(next_list):
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
-if st.session_state.first_through == False:
-  #set up main page with images  
-  clicked = images(10)
-  set_start(clicked[6:])
-  word_data = load_words()
-  
-if st.session_state.first_through == True:
-    #set up main page with images  
-    clicked = images(10)
-    set_start(clicked[6:])
-    word_data = load_words()
-    st.session_state.first_through = False
 
-
-
+#set up main page with images  
+clicked = images(10)
+set_start(clicked[6:])
+word_data = load_words()
 
 #clicking logic
 if clicked[6:] == '27': 
