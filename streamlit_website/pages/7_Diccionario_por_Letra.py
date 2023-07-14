@@ -7,12 +7,16 @@ import requests
 import gdown
 
 from st_click_detector import click_detector
+
+##constants
 alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k',
              12: 'l', 13: 'm', 14: 'n', 15: 'o', 16: 'p', 17: 'q', 18: 'r', 19: 's', 20: 't', 21: 'u',
              22: 'v', 23: 'w', 24: 'x', 25: 'y', 26: 'z', 27: 'otra'}
 
 alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+
+##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
 placeholder = st.empty()
 hide_streamlit_style = """
@@ -29,9 +33,29 @@ hide_menu_style = """
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
+
+with open("streamlit_website/css/style.css") as f:
+    style = f.read()
+
+with open("streamlit_website/css/bootstrap.css") as file:
+    boot = file.read()
+
+with open("streamlit_website/css/responsive.css") as file2:
+    resp = file2.read()
+
+#initialize states
 if 'download' not in st.session_state:
    st.session_state.download = False
+  
+if 'letter' not in st.session_state:
+   st.session_state.letter = ""
 
+if 'offset' not in st.session_state:
+   st.session_state.offset = 0
+
+if 'prev_letter' not in st.session_state:
+   st.session_state.prev_letter = -1
+  
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(url, output_file, quiet=False)
@@ -54,23 +78,6 @@ def img_to_html(img_path):
       img_to_bytes(img_path)
     )
     return img_html
-with open("streamlit_website/css/style.css") as f:
-    style = f.read()
-
-with open("streamlit_website/css/bootstrap.css") as file:
-    boot = file.read()
-
-with open("streamlit_website/css/responsive.css") as file2:
-    resp = file2.read()
-
-if 'letter' not in st.session_state:
-   st.session_state.letter = ""
-
-if 'offset' not in st.session_state:
-   st.session_state.offset = 0
-
-if 'prev_letter' not in st.session_state:
-   st.session_state.prev_letter = -1
 
 def set_start(i):
    st.session_state.letter = i
@@ -123,6 +130,7 @@ def images(size):
       clicked = click_detector(content)
       st.write('adding images')
       return clicked
+  
 def print_list(next_list):
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
     html_string = f'''
@@ -134,16 +142,19 @@ def print_list(next_list):
     st.markdown(
             html_string,
         unsafe_allow_html=True)
-  
+#start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
   
+#set up main page with images  
 placeholder.empty()
 with placeholder.container():
   clicked = images(10)
+  st.write('clicked', clicked)
   set_start(clicked[6:])
   word_data = load_words()
-  
+
+#clicking logic
 if clicked[6:] == '27': 
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
