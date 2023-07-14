@@ -153,7 +153,7 @@ if clicked[6:] == '27':
     next_list = alpha_list[0:20]
     print_list(next_list)
   
-if clicked != ":
+if clicked != "":
   letter = alpha_num[int(st.session_state.letter)]
   alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
   alpha_list.sort_values(by=['Palabra'])
