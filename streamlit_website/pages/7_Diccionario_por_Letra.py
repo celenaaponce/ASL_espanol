@@ -55,6 +55,9 @@ if 'offset' not in st.session_state:
 
 if 'prev_letter' not in st.session_state:
    st.session_state.prev_letter = -1
+
+if 'set_images' not in st.session_state:
+  st.session_state.set_images = False
   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -149,10 +152,11 @@ if st.session_state.download == False:
 #set up main page with images  
 placeholder.empty()
 with placeholder.container():
-  clicked = images(10)
-  st.write('clicked', clicked)
-  set_start(clicked[6:])
-  word_data = load_words()
+  if st.session_state.set_images == False:
+    clicked = images(10)
+    st.session_state.set_images = True
+    set_start(clicked[6:])
+    word_data = load_words()
 
 #clicking logic
 if clicked[6:] == '27': 
