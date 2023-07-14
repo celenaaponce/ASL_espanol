@@ -135,7 +135,6 @@ if clicked == "":
     pass
 
 elif clicked[6:] == '27':
-    placeholder.empty()
 
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
@@ -149,15 +148,11 @@ elif clicked[6:] == '27':
             {table}
         </body>
         '''
-    with placeholder.container():
-      clicked = images(10)
-      set_start(clicked[6:])
     st.markdown(
             html_string,
         unsafe_allow_html=True)
 
 elif st.session_state.prev_letter != st.session_state.letter:
-    placeholder.empty()
     set_prev(st.session_state.letter)
     letter = alpha_num[int(st.session_state.letter)]
     alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
@@ -171,9 +166,7 @@ elif st.session_state.prev_letter != st.session_state.letter:
             {table}
         </body>
         '''
-    with placeholder.container():
-      clicked = images(10)
-      set_start(clicked[6:])
+
     st.markdown(
             html_string,
         unsafe_allow_html=True)
@@ -182,7 +175,7 @@ elif st.session_state.prev_letter != st.session_state.letter:
         col3.button('Proximas Palabras', on_click=set_offset, args=[st.session_state.offset+20])
 
 elif st.session_state.prev_letter == st.session_state.letter:
-    placeholder.empty()
+
     letter = alpha_num[int(st.session_state.letter)]
     alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
     alpha_list.sort_values(by=['Palabra'])
@@ -195,9 +188,7 @@ elif st.session_state.prev_letter == st.session_state.letter:
             {table}
         </body>
         '''
-    with placeholder.container():
-      clicked = images(10)
-      set_start(clicked[6:])
+
     st.markdown(
             html_string,
         unsafe_allow_html=True)
