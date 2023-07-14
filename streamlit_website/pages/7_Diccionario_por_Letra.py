@@ -138,6 +138,7 @@ def print_list(next_list):
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
   
+placeholder.empty()
 with placeholder.container():
   clicked = images(10)
   set_start(clicked[6:])
