@@ -55,11 +55,6 @@ if 'offset' not in st.session_state:
 
 if 'prev_letter' not in st.session_state:
    st.session_state.prev_letter = -1
-
-if 'first_through' not in st.session_state:
-  st.session_state.first_through = True
-  clicked = images(10)
-
   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -135,7 +130,9 @@ def images(size):
       clicked = click_detector(content)
       st.write('adding images')
       return clicked
-  
+if 'first_through' not in st.session_state:
+  st.session_state.first_through = True
+  clicked = images(10)  
 def print_list(next_list):
 
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
