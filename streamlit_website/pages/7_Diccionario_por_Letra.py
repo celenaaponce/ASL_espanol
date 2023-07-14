@@ -123,6 +123,9 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
+      st.write('images added')
+      st.write(st.session_state.letter)
+      st.write(st.session_state.prev_letter)
       clicked = click_detector(content)
       return clicked
   
