@@ -17,10 +17,12 @@ def main():
     clicked_main = click_detector(content)
 
     if clicked_main == 'Image 1' or clicked == 'Image 1':
+        st.header('Second')
         clicked = click_detector(content)
         st.write('here')
 
     elif clicked_main == 'Image 2' or clicked == 'Image 2':
+        st.header('Third')
         st.write('here2')
 if __name__ == "__main__":
     main()
