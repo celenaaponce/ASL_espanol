@@ -12,7 +12,7 @@ def main():
     <a href='#' id='Image 1'><img width='20%' src='https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200'></a>
     <a href='#' id='Image 2'><img width='20%' src='https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200'></a>
     """
-    clicked_main = ""
+    clicked = ""
     clicked_main = click_detector(content)
     while clicked_main == "":  
         st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
