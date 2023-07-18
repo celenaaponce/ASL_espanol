@@ -5,7 +5,7 @@ from pathlib import Path
 import os
 import requests
 import gdown
-
+from time import sleep
 from st_click_detector import click_detector
 
 ##constants
@@ -59,6 +59,10 @@ if 'prev_letter' not in st.session_state:
 if 'count' not in st.session_state:
   st.session_state.count = 0
   
+def empty():
+    placeholder.empty()
+    sleep(0.01)
+   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(url, output_file, quiet=False)
@@ -131,7 +135,7 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-      placeholder.empty()
+      empty()
       with placeholder.container():
         st.write(st.session_state.count)
         st.session_state.count += 1
@@ -157,7 +161,7 @@ word_data = load_words()
 
 
 #set up main page with images  
-placeholder.empty()
+
 clicked = images(10)
 set_start(clicked[6:])
 
