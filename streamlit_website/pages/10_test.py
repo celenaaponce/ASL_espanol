@@ -19,10 +19,10 @@ def main():
     clicked = ""
     with placeholder.container():
         st.header('Main')
-        clicked_main = click_detector(content, key='main')
-        st.markdown(f"**{clicked} clicked**" if clicked_main != "" else "**No click**")
+        clicked = click_detector(content, key='main')
+        st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 
-    if clicked_main == 'Image 1' or clicked == 'Image 1':
+    if clicked == 'Image 1':
         placeholder.empty()
         placeholder_2.empty()
         with placeholder_2.container():
@@ -31,7 +31,7 @@ def main():
             st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
             st.write('here')
 
-    elif clicked_main == 'Image 2' or clicked == 'Image 2':
+    elif clicked == 'Image 2':
         placeholder.empty()
         st.header('Third')
         st.write('here2')
