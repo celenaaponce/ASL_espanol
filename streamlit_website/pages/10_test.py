@@ -33,7 +33,6 @@ def main():
         st.write('here')
 
     elif clicked == 'Image 2':
-        placeholder.empty()
         st.header('Third')
         st.write('here2')
 if __name__ == "__main__":
