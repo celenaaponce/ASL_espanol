@@ -13,6 +13,7 @@ def main():
     <a href='#' id='Image 2'><img width='20%' src='https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200'></a>
     """
     clicked = ""
+    st.header('Main')
     clicked_main = click_detector(content)
 
     if clicked_main == 'Image 1' or clicked == 'Image 1':
