@@ -139,7 +139,6 @@ def images(size):
       return clicked
 
 def print_list(next_list):
-
     table = next_list.to_html(classes='mystyle', escape=False, index=False)
     html_string = f'''
 
@@ -150,6 +149,7 @@ def print_list(next_list):
     st.markdown(
             html_string,
         unsafe_allow_html=True)
+  
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
