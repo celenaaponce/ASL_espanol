@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import gdown
 from st_click_detector import click_detector
+from time import sleep
 
 def empty():
     placeholder.empty()
