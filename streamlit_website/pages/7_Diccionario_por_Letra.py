@@ -58,6 +58,7 @@ if 'prev_letter' not in st.session_state:
 
 if 'load_images' not in st.session_state:
   st.session_state.load_images = False
+  st.session_state.count = 0
   
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -130,7 +131,8 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-
+      st.write(st.session_state.count)
+      st.session_state.count += 1
       clicked = click_detector(content)
       return clicked
 
