@@ -8,6 +8,7 @@ def download_csv(file_id, output_file):
     gdown.download(url, output_file, quiet=False)
 def main():
     placeholder = st.empty()
+    placeholder_2 = st.empty()
     content = """<p><a href='#' id='Link 1'>First link</a></p>
     <p><a href='#' id='Link 2'>Second link</a></p>
     <a href='#' id='Image 1'><img width='20%' src='https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200'></a>
@@ -21,10 +22,12 @@ def main():
 
     if clicked_main == 'Image 1' or clicked == 'Image 1':
         placeholder.empty()
-        st.header('Second')
-        clicked = click_detector(content, key = 'second')
-        st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
-        st.write('here')
+        placeholder_2.empty()
+        with placeholder_2.container():
+            st.header('Second')
+            clicked = click_detector(content, key = 'second')
+            st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
+            st.write('here')
 
     elif clicked_main == 'Image 2' or clicked == 'Image 2':
         placeholder.empty()
