@@ -14,8 +14,6 @@ def main():
     """
     clicked = ""
     clicked_main = click_detector(content)
-    while clicked_main == "":  
-        st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 
     if clicked_main == 'Image 1' or clicked == 'Image 1':
         clicked = click_detector(content)
