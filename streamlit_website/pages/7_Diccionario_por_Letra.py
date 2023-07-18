@@ -97,6 +97,7 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
+placeholder = st.empty()
 other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
       content= f"""
@@ -130,9 +131,11 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-      st.write(st.session_state.count)
-      st.session_state.count += 1
-      clicked = click_detector(content)
+      placeholder.empty()
+      with placeholder.container():
+        st.write(st.session_state.count)
+        st.session_state.count += 1
+        clicked = click_detector(content)
       return clicked
 
 def print_list(next_list):
