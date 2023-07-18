@@ -131,10 +131,7 @@ def images(size):
          <a href='#' id='Image 27'>{other}</a>
          """
 
-      st.write('load', st.session_state.load_images)
       clicked = click_detector(content)
-      st.write('adding images test')
-      st.write('load', st.session_state.load_images)
       return clicked
 
 def print_list(next_list):
@@ -154,15 +151,10 @@ if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
 word_data = load_words()
 
-if not st.session_state.load_images:
-  st.write('load in', st.session_state.load_images)
-  #set up main page with images  
-  clicked = images(10)
-  set_start(clicked[6:])
 
-  if clicked != "":
-    st.session_state.load_images = True
-    st.write('load in', st.session_state.load_images)
+#set up main page with images  
+clicked = images(10)
+set_start(clicked[6:])
 
 #clicking logic
 if st.session_state.letter == '27': 
