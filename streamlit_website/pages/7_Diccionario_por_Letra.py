@@ -152,13 +152,14 @@ def print_list(next_list):
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
+word_data = load_words()
 
 if not st.session_state.load_images:
   st.write('load in', st.session_state.load_images)
   #set up main page with images  
   clicked = images(10)
   set_start(clicked[6:])
-  word_data = load_words()
+
   if clicked != "":
     st.session_state.load_images = True
     st.write('load in', st.session_state.load_images)
