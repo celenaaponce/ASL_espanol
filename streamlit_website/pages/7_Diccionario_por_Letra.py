@@ -159,8 +159,9 @@ if not st.session_state.load_images:
   clicked = images(10)
   set_start(clicked[6:])
   word_data = load_words()
-  st.session_state.load_images = True
-  st.write('load in', st.session_state.load_images)
+  if clicked != "":
+    st.session_state.load_images = True
+    st.write('load in', st.session_state.load_images)
 
 #clicking logic
 if st.session_state.letter == '27': 
