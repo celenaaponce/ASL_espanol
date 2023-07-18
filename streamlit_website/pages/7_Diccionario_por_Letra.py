@@ -164,7 +164,7 @@ if not st.session_state.load_images:
   st.write('load in', st.session_state.load_images)
 
 #clicking logic
-if clicked[6:] == '27': 
+if st.session_state.letter == '27': 
     set_prev(st.session_state.letter)
     alpha_list = word_data[~word_data.Palabra.str.startswith(alpha_tuple)]
     alpha_list.sort_values(by=['Palabra'])
@@ -174,7 +174,7 @@ if clicked[6:] == '27':
     print_list(next_list)
 
   
-if clicked != "":
+if st.session_state.letter != "":
   letter = alpha_num[int(st.session_state.letter)]
   alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
   alpha_list.sort_values(by=['Palabra'])
