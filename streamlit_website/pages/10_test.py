@@ -25,7 +25,6 @@ def main():
     with placeholder.container():
         st.header('Main')
         clicked = click_detector(content, key='main')
-        st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
     placeholder_2.empty()
     if clicked == 'Image 1':
         placeholder.empty()
@@ -33,7 +32,6 @@ def main():
         with placeholder_2.container():
             st.header('Second')
             clicked = click_detector(content2, key = 'second')
-            st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
             st.write('here')
 
     elif clicked == 'Image 2':
