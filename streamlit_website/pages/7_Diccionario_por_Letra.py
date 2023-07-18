@@ -133,7 +133,7 @@ def images(size):
       if not st.session_state.load_images:
         st.write('load', st.session_state.load_images)
         clicked = click_detector(content)
-        st.write('adding images')
+        st.write('adding images test')
         st.session_state.load_images = True
         st.write('load', st.session_state.load_images)
       return clicked
