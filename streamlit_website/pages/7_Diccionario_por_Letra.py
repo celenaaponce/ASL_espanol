@@ -56,8 +56,7 @@ if 'offset' not in st.session_state:
 if 'prev_letter' not in st.session_state:
    st.session_state.prev_letter = -1
 
-if 'load_images' not in st.session_state:
-  st.session_state.load_images = False
+if 'count' not in st.session_state:
   st.session_state.count = 0
   
 def download_csv(file_id, output_file):
