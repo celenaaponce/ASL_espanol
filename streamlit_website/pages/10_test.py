@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import gdown
+from st_click_detector import click_detector
 
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -24,8 +25,7 @@ def main():
         st.write('here2')
 if __name__ == "__main__":
     main()
-import streamlit as st
-from st_click_detector import click_detector
+
 
 
 
