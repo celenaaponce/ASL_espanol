@@ -172,7 +172,6 @@ if st.session_state.letter == '27':
     alpha_list.sort_values(by=['Palabra'])
     max_len = len(alpha_list)
     next_list = alpha_list[0:20]
-    empty()
     print_list(next_list)
 
   
@@ -190,7 +189,6 @@ if st.session_state.letter != "":
   if st.session_state.prev_letter == st.session_state.letter:
     next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
     offset = st.session_state.offset+20
-  empty()
   print_list(next_list)
   col1, col2, col3 = st.columns([1,1,1])
   if offset < max_len:
