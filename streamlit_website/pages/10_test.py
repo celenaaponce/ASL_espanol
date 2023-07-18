@@ -7,7 +7,9 @@ def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(url, output_file, quiet=False)
 def main():
+    st.header('placeholder')
     placeholder = st.empty()
+    st.header('placeholder2')
     placeholder_2 = st.empty()
     content = """<p><a href='#' id='Link 1'>First link</a></p>
     <p><a href='#' id='Link 2'>Second link</a></p>
