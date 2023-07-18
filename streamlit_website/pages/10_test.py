@@ -17,11 +17,13 @@ def main():
     with placeholder.container():
         st.header('Main')
         clicked_main = click_detector(content, key='main')
+        st.markdown(f"**{clicked_main} clicked_main**" if clicked_main != "")
 
     if clicked_main == 'Image 1' or clicked == 'Image 1':
         placeholder.empty()
         st.header('Second')
         clicked = click_detector(content, key = 'second')
+        st.markdown(f"**{clicked} clicked**" if clicked != "")
         st.write('here')
 
     elif clicked_main == 'Image 2' or clicked == 'Image 2':
