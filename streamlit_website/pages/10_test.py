@@ -3,9 +3,7 @@ import pandas as pd
 import gdown
 from st_click_detector import click_detector
 
-def empty():
-    placeholder.empty()
-    sleep(0.01)
+
 
 def main():
     placeholder = st.empty()
@@ -25,6 +23,10 @@ def main():
     elif clicked == 'Image 2':
         st.header('Third')
         st.write('here2')
+
+def empty():
+    placeholder.empty()
+    sleep(0.01)
 if __name__ == "__main__":
     main()
 
