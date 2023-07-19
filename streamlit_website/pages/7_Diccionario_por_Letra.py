@@ -19,29 +19,29 @@ alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 ##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
 
-hide_streamlit_style = """
-<style>
-    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
-</style>
+# hide_streamlit_style = """
+# <style>
+#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
+# </style>
 
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# """
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
+# hide_menu_style = """
+#         <style>
+#         #MainMenu {visibility: hidden;}
+#         </style>
+#         """
+# st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with open("streamlit_website/css/style.css") as f:
-    style = f.read()
+# with open("streamlit_website/css/style.css") as f:
+#     style = f.read()
 
-with open("streamlit_website/css/bootstrap.css") as file:
-    boot = file.read()
+# with open("streamlit_website/css/bootstrap.css") as file:
+#     boot = file.read()
 
-with open("streamlit_website/css/responsive.css") as file2:
-    resp = file2.read()
+# with open("streamlit_website/css/responsive.css") as file2:
+#     resp = file2.read()
 
 #initialize states
 if 'download' not in st.session_state:
@@ -58,10 +58,6 @@ if 'prev_letter' not in st.session_state:
 
 if 'count' not in st.session_state:
   st.session_state.count = 0
-  
-def empty():
-    placeholder.empty()
-    sleep(0.01)
    
 def download_csv(file_id, output_file):
     url = f'https://drive.google.com/uc?id={file_id}'
@@ -101,8 +97,6 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
-placeholder = st.empty()
-placeholder_2 = st.empty()
 other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
       content= f"""
@@ -136,35 +130,31 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-      empty()
-      with placeholder.container():
-        st.write('letter', st.session_state.letter)
-        st.write('count', st.session_state.count)
-        st.session_state.count += 1
-        clicked = click_detector(content)
+
+      st.write('letter', st.session_state.letter)
+      st.write('count', st.session_state.count)
+      st.session_state.count += 1
+      clicked = click_detector(content)
       return clicked
 
 def print_list(next_list):
-    with placeholder_2.container():
-      table = next_list.to_html(classes='mystyle', escape=False, index=False)
-      html_string = f'''
-  
-          <body>
-              {table}
-          </body>
-          '''
-      st.markdown(
-              html_string,
-          unsafe_allow_html=True)
+    table = next_list.to_html(classes='mystyle', escape=False, index=False)
+    html_string = f'''
+
+        <body>
+            {table}
+        </body>
+        '''
+    st.markdown(
+            html_string,
+        unsafe_allow_html=True)
   
 #start with download
 if st.session_state.download == False:
   download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
 word_data = load_words()
 
-
 #set up main page with images  
-empty()
 clicked = images(10)
 set_start(clicked[6:])
 
@@ -177,7 +167,6 @@ if st.session_state.letter == '27':
     next_list = alpha_list[0:20]
     print_list(next_list)
 
-  
 if st.session_state.letter != "":
   letter = alpha_num[int(st.session_state.letter)]
   alpha_list = word_data.loc[word_data['Palabra'].str.startswith(letter, na=False)]
@@ -192,6 +181,7 @@ if st.session_state.letter != "":
   if st.session_state.prev_letter == st.session_state.letter:
     next_list = alpha_list[st.session_state.offset:st.session_state.offset+20]
     offset = st.session_state.offset+20
+    
   print_list(next_list)
   col1, col2, col3 = st.columns([1,1,1])
   if offset < max_len:
