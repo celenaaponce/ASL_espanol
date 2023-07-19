@@ -139,7 +139,6 @@ def images(size):
       empty()
       with placeholder.container():
         clicked = click_detector(content)
-        set_start(clicked[6:])
         st.write('letter', st.session_state.letter)
         st.write('count', st.session_state.count)
         st.session_state.count += 1
