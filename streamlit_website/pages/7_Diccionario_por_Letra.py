@@ -16,32 +16,32 @@ alpha_num = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 
 alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
 
-# ##page configs
-# st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
+##page configs
+st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
 
-# hide_streamlit_style = """
-# <style>
-#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
-# </style>
+hide_streamlit_style = """
+<style>
+    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
+</style>
 
-# """
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# hide_menu_style = """
-#         <style>
-#         #MainMenu {visibility: hidden;}
-#         </style>
-#         """
-# st.markdown(hide_menu_style, unsafe_allow_html=True)
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-# with open("streamlit_website/css/style.css") as f:
-#     style = f.read()
+with open("streamlit_website/css/style.css") as f:
+    style = f.read()
 
-# with open("streamlit_website/css/bootstrap.css") as file:
-#     boot = file.read()
+with open("streamlit_website/css/bootstrap.css") as file:
+    boot = file.read()
 
-# with open("streamlit_website/css/responsive.css") as file2:
-#     resp = file2.read()
+with open("streamlit_website/css/responsive.css") as file2:
+    resp = file2.read()
 
 #initialize states
 if 'download' not in st.session_state:
@@ -101,7 +101,9 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
+st.header('images')
 placeholder = st.empty()
+st.header('table')
 placeholder_2 = st.empty()
 other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
