@@ -19,13 +19,13 @@ alpha_tuple = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 ##page configs
 st.set_page_config(layout="wide", page_title="Diccionario Por Letra")
 
-hide_streamlit_style = """
-<style>
-    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
-</style>
+# hide_streamlit_style = """
+# <style>
+#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem; padding-left: 0rem;}
+# </style>
 
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# """
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 hide_menu_style = """
         <style>
