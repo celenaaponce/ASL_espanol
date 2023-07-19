@@ -142,6 +142,7 @@ def images(size):
         st.write('count', st.session_state.count)
         st.session_state.count += 1
         clicked = click_detector(content)
+        set_start(clicked[6:])
       return clicked
 
 def print_list(next_list):
