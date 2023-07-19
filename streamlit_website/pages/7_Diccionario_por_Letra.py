@@ -102,6 +102,7 @@ def reset_start():
    set_start("")
 
 placeholder = st.empty()
+placeholder_2 = st.empty()
 other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
       content= f"""
@@ -144,16 +145,17 @@ def images(size):
       return clicked
 
 def print_list(next_list):
-    table = next_list.to_html(classes='mystyle', escape=False, index=False)
-    html_string = f'''
-
-        <body>
-            {table}
-        </body>
-        '''
-    st.markdown(
-            html_string,
-        unsafe_allow_html=True)
+    with placeholder_2.container()
+      table = next_list.to_html(classes='mystyle', escape=False, index=False)
+      html_string = f'''
+  
+          <body>
+              {table}
+          </body>
+          '''
+      st.markdown(
+              html_string,
+          unsafe_allow_html=True)
   
 #start with download
 if st.session_state.download == False:
