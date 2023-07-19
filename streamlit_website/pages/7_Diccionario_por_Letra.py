@@ -145,7 +145,6 @@ def images(size):
       return clicked
 
 def print_list(next_list):
-    empty()
     with placeholder_2.container():
       table = next_list.to_html(classes='mystyle', escape=False, index=False)
       html_string = f'''
