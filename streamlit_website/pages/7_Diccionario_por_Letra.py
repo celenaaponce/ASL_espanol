@@ -167,6 +167,7 @@ word_data = load_words()
 
 #set up main page with images  
 empty()
+st.header('here')
 clicked = images(10)
 set_start(clicked[6:])
 
