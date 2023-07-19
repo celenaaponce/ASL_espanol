@@ -138,13 +138,12 @@ def images(size):
          <a href='#' id='Image 26'><img width='{size}%' src='https://www.lifeprint.com/asl101/fingerspelling/abc-gifs/z.gif'></a>
          <a href='#' id='Image 27'>{other}</a>
          """
-      empty()
-      with placeholder.container():
-        st.write('letter', st.session_state.letter)
-        st.write('count', st.session_state.count)
-        st.session_state.count += 1
-        clicked = click_detector(content)
-        return clicked
+
+      st.write('letter', st.session_state.letter)
+      st.write('count', st.session_state.count)
+      st.session_state.count += 1
+      clicked = click_detector(content)
+      return clicked
 
 def print_list(next_list):
     with placeholder_2.container():
