@@ -21,7 +21,21 @@ def render_content():
         st.header('Second')
         st.write('there')
         
-st.markdown("""<script>
+st.markdown("""<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Counter</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body onload="incrementCount(10)">
+    <div class="main_container" id="id_main_container">
+      <div class="container_inner" id="display_div_id">
+      </div>
+    </div>
+  </body>
+</html>
+<script>
   var counter_list = [10,10000,10000];
   var str_counter_0 = counter_list[0];
   var str_counter_1 = counter_list[1];
