@@ -5,7 +5,7 @@ import streamlit.components.v1 as com
 
 def render_content(): 
     
-   com.html("""<!DOCTYPE html>
+    com.html("""<!DOCTYPE html>
         <html>
         <head>
             <title>Clickable Images with IDs</title>
