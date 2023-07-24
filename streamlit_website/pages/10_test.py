@@ -12,16 +12,16 @@ def render_content():
         </head>
         <body>
             <!-- Clickable Image 1 -->
-            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200" alt="Image 1" width="300" height="200" id="img1">
+            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200" alt="Image 1" width="30" height="20" id="img1">
         
             <!-- Clickable Image 2 -->
-            <img src="https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200" alt="Image 2" width="300" height="200" id="img2">
+            <img src="https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200" alt="Image 2" width="30" height="20" id="img2">
         
             <!-- Clickable Image 3 -->
-            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200" alt="Image 3" width="300" height="200" id="img3">
+            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200" alt="Image 3" width="30" height="20" id="img3">
         
             <!-- Display the clicked image ID -->
-            <p id="clickedImageID"></p>
+            <p id="clickedImageID">'Image'</p>
         
             <script>
                 // Function to handle image click event
