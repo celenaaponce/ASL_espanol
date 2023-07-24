@@ -13,11 +13,15 @@ def render_content():
     
     if clicked == 'Image 1':
         empty()
+        with placeholder.container():
+            clicked = click_detector(content, key='main')
         st.header('First')
         st.write('here')
 
     elif clicked == 'Image 2':
         empty()
+        with placeholder.container():
+            clicked = click_detector(content, key='main')
         st.header('Second')
         st.write('there')
         
