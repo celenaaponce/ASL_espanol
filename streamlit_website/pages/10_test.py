@@ -2,7 +2,7 @@ import streamlit as st
 from st_click_detector import click_detector
 from time import sleep
 import streamlit.components.v1 as com
-
+from pathlib import Path 
 
 def render_content(): 
     com.html("""<!DOCTYPE html>
