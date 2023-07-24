@@ -42,5 +42,5 @@ def render_content():
         </body>
         </html>
     """)
-    st.write(imageID)
+
 render_content()
