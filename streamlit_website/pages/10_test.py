@@ -1,6 +1,6 @@
 import streamlit as st
 from st_click_detector import click_detector
-
+from time import sleep
 
 placeholder = st.empty()
 def render_content():
