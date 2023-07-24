@@ -4,7 +4,7 @@ from time import sleep
 import streamlit.components.v1 as com
 
 def render_content():  
-    str_html = """
+    com.html("""
         <!DOCTYPE html>
         <html>
           <head>
@@ -52,6 +52,6 @@ def render_content():
             },1000);
           }
         </script>
-    """
-    st.markdown(str_html, unsafe_allow_html=True)
+    """, width=1000, height = 600, scrolling = True)
+
 render_content()
