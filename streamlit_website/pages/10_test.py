@@ -4,6 +4,7 @@ from time import sleep
 import streamlit.components.v1 as com
 from pathlib import Path 
 import base64
+import gdown
 
 def render_content(): 
     com.html("""<!DOCTYPE html>
