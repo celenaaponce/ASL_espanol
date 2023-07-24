@@ -1,6 +1,7 @@
 import streamlit as st
 from st_click_detector import click_detector
 from time import sleep
+import streamlit.components.v1 as com
 
 placeholder = st.empty()
 def render_content():
@@ -21,7 +22,7 @@ def render_content():
         st.header('Second')
         st.write('there')
         
-    st.markdown("""<!DOCTYPE html>
+    str_html = """<!DOCTYPE html>
     <html>
       <head>
         <title>JS Counter</title>
@@ -66,5 +67,7 @@ def render_content():
           }
         },1000);
       }
-    </script>""", unsafe_allow_html=True)
+    </script>"""
+
+    st.markdown(str_html, unsafe_allow_html=True)
 render_content()
