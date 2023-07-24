@@ -22,7 +22,7 @@ def render_content():
         st.header('Second')
         st.write('there')
         
-    str_html = """<!DOCTYPE html>
+    str_html = """
     <html>
       <head>
         <title>JS Counter</title>
@@ -36,6 +36,7 @@ def render_content():
         </div>
       </body>
     </html>
+    
     <script>
       var counter_list = [10,10000,10000];
       var str_counter_0 = counter_list[0];
@@ -67,7 +68,8 @@ def render_content():
           }
         },1000);
       }
-    </script>"""
+    </script>
+    """
 
     st.markdown(str_html, unsafe_allow_html=True)
 render_content()
