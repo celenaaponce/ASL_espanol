@@ -4,51 +4,41 @@ from time import sleep
 import streamlit.components.v1 as com
 
 def render_content(): 
-    content = """ <div id='images'>
-    <a href='#' id='Image 1'><img width='20%' src='https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200'></a>
-    <a href='#' id='Image 2'><img width='20%' src='https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200'></a>
-    </div>
-    """
-    
-    clicked = click_detector(content, key='main')
     
     com.html("""
         <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Count Occurrences of ID</title>
-        </head>
-        <body>
+            <html>
+            <head>
+                <title>Clickable Images with IDs</title>
+            </head>
+            <body>
+                <!-- Clickable Image 1 -->
+                <img src="https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200" alt="Image 1" width="300" height="200" id="img1">
             
-            <div id="element1">Element 1</div>
-            <div id="element2">Element 2</div>
-            <div id="element1">Element 3</div>
-            <div id="element3">Element 4</div>
-            <div id="element1">Element 5</div>
-        
-            <script>
-                // Function to count occurrences of an ID
-                function countOccurrencesOfId(id) {
-                    var elements = document.getElementsByTagName('*');
-                    var count = 0;
-        
-                    for (var i = 0; i < elements.length; i++) {
-                        if (elements[i].id === id) {
-                            count++;
-                        }
+                <!-- Clickable Image 2 -->
+                <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=200" alt="Image 2" width="300" height="200" id="img2">
+            
+                <!-- Clickable Image 3 -->
+                <img src="https://images.unsplash.com/photo-1565130838609-c3a86655db61?w=200" alt="Image 3" width="300" height="200" id="img3">
+            
+                <script>
+                    // Function to handle image click event
+                    function handleImageClick(event) {
+                        var clickedImage = event.target; // Get the clicked image element
+                        var imageID = clickedImage.id;   // Get the ID of the clicked image
+                        alert("Clicked Image ID: " + imageID);
                     }
-        
-                    return count;
-                }
-        
-                // Usage example:
-                var idToSearch = "images";
-                var occurrences = countOccurrencesOfId(idToSearch);
-                console.log("Occurrences of ID '" + idToSearch + "': " + occurrences);
-            </script>
-        </body>
-        </html>
+            
+                    // Attach click event listeners to the images
+                    var images = document.querySelectorAll('img');
+                    images.forEach(function(image) {
+                        image.addEventListener('click', handleImageClick);
+                    });
+                </script>
+            </body>
+            </html>
 
     """, width=1000, height = 600, scrolling = True)
-
+    if imageID == 'Image 2':
+        st.write('hello')
 render_content()
