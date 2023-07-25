@@ -30,7 +30,7 @@ def download_csv(file_id, output_file):
 @st.cache_data
 def load_words():
   csv_length = 0    
-  for chunk in pd.read_csv('Themes.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
+  for chunk in pd.read_csv('Themes2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
           data = pd.DataFrame(chunk)
   return data
 
