@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import sys
 
-sys.path.append('/Users/celenap/streamlit_website/check')
+sys.path.append('streamlit_website/check')
 
 from check.spanish_word_freq import SpanishWordFreq
 from check.word_chekcer import WordChecker
