@@ -14,16 +14,24 @@ if "count" not in st.session_state:
 
 if "clicked" not in st.session_state:
     st.session_state.clicked = ""
-
+    
+if 'download' not in st.session_state:
+    st.session_state.download = False
 
 themes = {1: 'Plano de Casa', 2: 'Día de los Muertos', 4: 'Dia de San Valentin', 3: 'Halloween', 5: 'Primavera', 6: 'Quehaceres', 7: 'Exterior de Casa', 8: 'Más Comida', 9: 'Día de Acción de Gracias', 
           10: 'Frutas', 11: 'Verduras', 12: 'Carnes', 13: 'Interior de Casa', 14: 'Bravo 1', 15: 'Bravo 2', 16: 'Bravo 3', 17: 'Bravo 4', 18: 'Números', 19: "Pascua", 20: "Colores"}
+
+def download_csv(file_id, output_file):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, output_file, quiet=False)
+    st.session_state.download = True
+
+@st.cache_data
 def load_words():
-    word_data = pd.read_csv('streamlit_website/Themes2.csv')
-    word_data = word_data.drop(word_data.columns[0], axis=1)
-    word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
-    word_data.sort_values(by=['Tema'])
-    return word_data
+  csv_length = 0    
+  for chunk in pd.read_csv('Themes.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
+          data = pd.DataFrame(chunk)
+  return data
 
 with open("streamlit_website/css/style.css") as f:
     style = f.read()
@@ -33,6 +41,11 @@ with open("streamlit_website/css/bootstrap.css") as file:
 
 with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
+
+#start with download
+if st.session_state.download == False:
+  download_csv('1IM-icAYQD-IVRUaV7NypfJTjRo6enwuE', 'Themes2.csv')
+word_data = load_words()
 
 if st.session_state.clicked == "":
     size = 20
