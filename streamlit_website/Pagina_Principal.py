@@ -49,20 +49,20 @@ def get_base64(bin_file):
     return base64.b64encode(data).decode()
 
 com.html(f"""
-         <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />   
-  <style>{style}</style>
-  <style>{boot}</style>
-  <title>Lengua de Señas Americana en Español</title>
-  </head>
+  #        <head>
+  # <!-- Basic -->
+  # <meta charset="utf-8" />
+  # <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  # <!-- Mobile Metas -->
+  # <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  # <!-- Site Metas -->
+  # <meta name="keywords" content="" />
+  # <meta name="description" content="" />
+  # <meta name="author" content="" />   
+  # <style>{style}</style>
+  # <style>{boot}</style>
+  # <title>Lengua de Señas Americana en Español</title>
+  # </head>
   <body>
   <section class="hero_section ">
       <div class="hero-container container">
