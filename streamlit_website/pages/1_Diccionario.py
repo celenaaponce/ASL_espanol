@@ -39,15 +39,15 @@ remote_css("https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,
 remote_css("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
 com.html(f"""
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  # <!-- Basic -->
+  # <meta charset="utf-8" />
+  # <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  # <!-- Mobile Metas -->
+  # <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  # <!-- Site Metas -->
+  # <meta name="keywords" content="" />
+  # <meta name="description" content="" />
+  # <meta name="author" content="" />
          
   <style>{style}</style>
   <style>{boot}</style>
