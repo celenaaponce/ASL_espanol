@@ -24,8 +24,6 @@ with open("streamlit_website/css/style.css") as f:
 with open("streamlit_website/css/bootstrap.css") as file:
     boot = file.read()
 
-with open("streamlit_website/css/responsive.css") as file2:
-    resp = file2.read()
 
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)   
