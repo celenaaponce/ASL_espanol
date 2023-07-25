@@ -101,9 +101,9 @@ def back_offset(i):
 def reset_start():
    set_start("")
 
-st.header('images')
+
 placeholder = st.empty()
-st.header('table')
+
 placeholder_2 = st.empty()
 other = img_to_html('streamlit_website/images/otra.png')
 def images(size):
@@ -139,9 +139,6 @@ def images(size):
          <a href='#' id='Image 27'>{other}</a>
          """
 
-      st.write('letter', st.session_state.letter)
-      st.write('count', st.session_state.count)
-      st.session_state.count += 1
       clicked = click_detector(content)
       return clicked
 
