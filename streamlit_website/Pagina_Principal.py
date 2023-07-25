@@ -21,10 +21,6 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
-with open("streamlit_website/css/bootstrap.css") as file:
-    boot = file.read()
-
-
 def remote_css(url):
     st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)   
 
@@ -61,7 +57,6 @@ com.html(f"""
   <meta name="description" content="" />
   <meta name="author" content="" />   
   <style>{style}</style>
-  <style>{boot}</style>
   <title>Lengua de Señas Americana en Español</title>
   </head>
   <body>
