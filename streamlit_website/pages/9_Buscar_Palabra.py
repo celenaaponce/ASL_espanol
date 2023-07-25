@@ -117,7 +117,7 @@ elif not word_list_no_acc.empty:
         unsafe_allow_html=True)
     
 if word_list.empty and word != "":
-    filePath = "/Users/celenap/streamlit_website/pages/10000_frecuencias.txt"
+    filePath = "streamlit_website/pages/10000_frecuencias.txt"
 
     spanishWords = SpanishWordFreq(filePath)
     
