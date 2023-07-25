@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import gdown
 from st_click_detector import click_detector
 st.set_page_config(layout="wide", page_title="Diccionario Por Tema")
 increment = None
