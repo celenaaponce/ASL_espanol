@@ -62,7 +62,6 @@ com.html(f"""
   <meta name="author" content="" />   
   <style>{style}</style>
   <style>{boot}</style>
-  <style>{resp}</style>
   <title>Lengua de Señas Americana en Español</title>
   </head>
   <body>
