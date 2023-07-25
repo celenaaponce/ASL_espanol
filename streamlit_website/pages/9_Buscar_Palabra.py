@@ -37,13 +37,26 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-def load_words(file):
-    word_data = pd.read_csv(file)
-    word_data = word_data.drop(word_data.columns[0], axis=1)
-    word_data.columns = ['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino']
-    word_data.sort_values(by=['Palabra'])
-    return word_data
 
+def download_csv(file_id, output_file):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, output_file, quiet=False)
+    st.session_state.download = True
+  
+@st.cache_data
+def load_words():
+  csv_length = 0    
+  for chunk in pd.read_csv('Search List2.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
+        data = pd.DataFrame(chunk)
+  return data
+    
+@st.cache_data
+def load_words_no_acc():
+  csv_length = 0    
+  for chunk in pd.read_csv('Search List no acc.csv', names=['Palabra', 'Tema', 'Video', 'Imagen', 'Sinómino'], chunksize=10000, skiprows=1):
+        data = pd.DataFrame(chunk)
+  return data
+    
 with open("streamlit_website/css/style.css") as f:
     style = f.read()
 
@@ -52,15 +65,27 @@ with open("streamlit_website/css/bootstrap.css") as file:
 
 with open("streamlit_website/css/responsive.css") as file2:
     resp = file2.read()
+    
+if 'download_no_acc' not in st.session_state:
+    st.session_state.download_no_acc = False
+    
+if 'download' not in st.session_state:
+   st.session_state.download = False
+    
+#start with download
+if st.session_state.download == False:
+  download_csv('1bii0vusXl-640sgVhRK2NVj8XCZtGgDx', 'Search List2.csv')
+
+if st.session_state.download_no_acc == False:
+    download_csv('1fzLfxTI_aw2Zaj4sL1sc_teTHUmM0X9c', 'Search List no acc.csv')
+word_data = load_words()
+word_data_no_acc = load_words_no_acc()
 
 st.write("")
 st.header("Buscar Palabra")
 word = st.text_input("Buscar Palabra", label_visibility="hidden")
 
-word_data = load_words('/Users/celenap/streamlit_website/Search List2.csv')
-
 word_list = word_data.loc[word_data['Palabra']==word]
-word_data_no_acc = load_words('/Users/celenap/streamlit_website/Search List no acc.csv')
 word_list_no_acc = word_data_no_acc.index[word_data_no_acc['Palabra']==word]
 
 if not word_list.empty:
